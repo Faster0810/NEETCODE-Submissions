@@ -1,0 +1,27 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+
+        stack = []
+
+        mapping = {
+            ")": "(", #must match (
+            "]": "[", #must match [
+            "}": "{" # must match {
+        }
+
+        for char in s:
+
+            if char in mapping:
+
+                if not stack:
+                    return False
+
+                top = stack.pop()
+
+                if mapping[char] != top:
+                    return False
+
+            else:
+                stack.append(char)
+
+        return not stack              
